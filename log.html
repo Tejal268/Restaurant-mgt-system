@@ -1,0 +1,148 @@
+<html>
+  <head>
+  <title>User Login</title>
+  <head>
+    <style type="text/css">
+     body
+   {
+     margin:0px; 
+	 background:url('./UserLogin1.jpg') no-repeat;
+	 background-size:cover;
+	 color:#f7f7f7; 
+	 font-family:Arial, Helvetica, sans-serif;
+   }
+   #main
+   {
+	background-color:rgba(0,0,0,0.2);
+     width:600px; 
+	 height:260px; 
+	 margin-left:auto; 
+	 margin-right:auto; 
+	 border-radius:5px; 
+	 padding-left:10px; 
+	 margin-top:200px;
+     border-top:3px double #f1f1f1; 
+	 border-bottom:3px double #f1f1f1; 
+	 padding-top:20px;
+   }
+   #main table
+   {
+     font-family:"Comic Sans MS", cursive;
+   } 
+  /* css code for textbox */
+  #main .tb
+  {
+    height:28px; 
+	width:230px; 
+	border:1px solid #27a465; 
+	color:black;
+	font-weight:bold; 
+	border-left:5px solid #f7f7f7; 
+	opacity:0.9;
+  }
+   /* css code for button*/
+   #main .btn
+   {
+    width:80px;
+    height:32px; 
+	outline:none; 
+    font-weight:bold; 
+	border:0px solid #27a465; 
+	text-shadow: 0px 0.5px 0.5px #fff;	
+    border-radius: 2px; 
+	font-weight: 600; 
+	color: black; 
+	letter-spacing: 1px; 
+	font-size:14px; 
+	-webkit-transition: 1s;
+	 -moz-transition: 1s; 
+	 transition: 1s;
+   }
+   #main .btn:hover
+   {
+    background-color:#27a465; 
+	outline:none;  
+	border-radius: 2px; 
+	color:#f1f1f1; 
+	border:1px solid #f1f1f1;
+   }
+    </style>
+  </head>
+
+	<body>
+	<!-- Main div code -->
+	<div id="main">
+	<div class="h-tag">
+	<h2>User Login</h2>
+	</div>
+	<!-- Login box -->
+	<form action=" " method="post">
+	<div class="login">
+	<table cellspacing="2" align="center" cellpadding="8" border="0">
+	<tr>
+	<td>Enter User Name :</td>
+	<td><input type="text" placeholder="Enter user name here" name="email" id="email" value=""class="tb" /></td>
+	</tr>
+	<tr>
+	<td>Enter Password :</td>
+	<td><input type="password" placeholder="Enter Password here" name="password"id="pwd1" value=""class="tb" /></td>
+	</tr>
+	<tr>
+	<td></td>
+	<td>
+	
+	<input type="submit" value="Login" name="login" class="btn"/>
+    
+	</tr>
+	</table>
+	</div>
+    </form>
+  	 <!-- login box div ending here.. -->
+	</div>
+	<!-- Main div ending here... -->
+    <script>
+	//Reset Inputfield code.
+	
+    
+        </script>
+  </body>
+  </html>
+  <?php
+
+		// servername => localhost
+		// username => root
+		// password => empty
+		// database name => staff
+		$conn = mysqli_connect("localhost", "root", "", "login");
+		
+		// Check connection
+		if($conn === false){
+			die("ERROR: Could not connect. "
+				. mysqli_connect_error());
+		}
+		
+		// Taking all 5 values from the form data(input)
+				
+		$email = $_REQUEST['email'];
+		$password = $_REQUEST['password'];
+		
+		// Performing insert query execution
+		// here our table name is college
+		$sql = "INSERT INTO emp VALUES ('$email','$password')";
+		
+		if(mysqli_query($conn,$sql)){
+			echo "<h3>data stored in a database successfully."
+				. " Please browse your localhost php my admin"
+				. " to view the updated data</h3>";
+
+			echo nl2br("\n$email\n  "
+				. "\n$password");
+		} else{
+			echo "ERROR: Hush! Sorry $sql. "
+				. mysqli_error($conn);
+		}
+		
+		// Close connection
+		mysqli_close($conn);
+		?>
+  
